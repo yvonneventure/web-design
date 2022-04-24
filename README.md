@@ -1,7 +1,16 @@
-# Web Design Notes & Projects (HTML/CSS/Bootstrap/JS)
+# Web Design Notes & Projects 
 
+<br>
 
-## Responsive Web Design
+> - HTML
+> - CSS
+> - Javascript
+> - Boostrap
+> - Flask
+
+<br>
+
+## [Responsive Web Design](010%20Responsive%20Web%20Design)
 
 > FreeCodeCamp Projects:
 > - [Build a Tribute Page - My Solution](https://codepen.io/YvonneX/pen/NWXVdpg?editors=1100):
