@@ -10,7 +10,7 @@
 
 <br>
 
-## [Responsive Web Design](010%20Responsive%20Web%20Design)
+## [Responsive Web Design](010%20Responsive%20Web%20Design) (HTML&CSS)
 
 > FreeCodeCamp Projects:
 > - [Build a Tribute Page - My Solution](https://codepen.io/YvonneX/pen/NWXVdpg?editors=1100):
