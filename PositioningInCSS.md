@@ -70,7 +70,24 @@
   -  align individual item vertically `align-self`
 
 - Grid Areas
+  - `grid-template-areas:` to devide the grid into areas
+          
+          grid-template-areas:
+         "header header header"
+         "advert content content"
+         "advert footer footer";
+         
+    > The code above groups the cells of the grid into four areas; header, advert, content, and footer. Every word represents a cell and every pair of quotation marks represent a row.
 
+  - After creating an area template for your grid container, you can place an item in your custom area by referencing the name you gave it
+  
+        .item1 {
+        grid-area: header;
+        }
+        
+    > This lets the grid know that you want the item1 class to go in the area named header. In this case, the item will use the entire top row because that whole row is named as the header area.
+
+  - CSS Grid can be an easy way to make your site more responsive by using media queries to rearrange grid areas, change dimensions of a grid, and rearrange the placement of items.
 
 
 
