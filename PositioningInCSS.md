@@ -24,9 +24,31 @@
 - Margin:
   - set `margin:auto;` will center the block elements from four sides
 
-- CSS flexbox:
+### CSS flexbox:
+
+- Use of flexbox
   - usually used with a div or section parent element, and make the parent `display: flex;`
   - this will make every elements inside the parent section has a flexible position
   - default flex-direction is row, but you can set to column, row-reverse, column-reverse.
 
-- CSS Grid:
+- `justify-content:` property
+  - to position the elements in the flex box, set `justify-content` in parent elements
+  - default value is `flex-start`, can set to :`center`, `space-around`, `space-evenly`, `space-between`,`flex-end`
+  - to see the difference in positions of these values, go to [w3school](https://www.w3schools.com/cssref/playdemo.asp?filename=playcss_justify-content&preval=space-between)
+
+- `align-items` property
+  - used when height of the child elements are not difined, and to align elements cross axis.
+  - default value is `stretch`, which means by default the child element will have the same height as the parent.
+
+- `flex-wrap` property
+  - By default, a flex container will fit all flex items together. For example, a row will all be on one line, despite of their individual width or height
+  
+- properties to modify the individual child element
+  - `flex-shrink` to shrink the element on the axis
+  - `flex-grow` to make element bigger on the axis
+  - `flex-basis` to set the initial size of the element
+  - `align-self` to set alignment of itself, rather then all elements at once
+  - `order` to rearrange each element's order in the parent
+  
+
+### CSS Grid:
