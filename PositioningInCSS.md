@@ -25,6 +25,8 @@
   - set `margin:auto;` will center the block elements from four sides
 
 - CSS flexbox:
-
+  - usually used with a div or section parent element, and make the parent `display: flex;`
+  - this will make every elements inside the parent section has a flexible position
+  - default flex-direction is row, but you can set to column, row-reverse, column-reverse.
 
 - CSS Grid:
