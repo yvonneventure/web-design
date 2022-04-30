@@ -1,4 +1,4 @@
-# Web Design Notes & Projects 
+# Web Design Projects 
 
 <br>
 
