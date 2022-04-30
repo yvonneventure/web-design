@@ -52,3 +52,34 @@
   
 
 ### CSS Grid:
+
+ - Use of Grid
+  - usually used with a div or section parent element, and make the parent `display: grid;`
+  
+ - Create columns in grid
+  - `grid-template-columns: 50% 50%;` : this will create 2 column, each column has a width 50% of the parent elements, all elements in the container/parent will be orderd from top to bottom, left to right.
+  - `grid-template-columns: auto 50px 10% 2fr 1fr;` : This snippet creates five columns. The first column is as wide as its content, the second column is 50px, the third column is 10% of its container, and for the last two columns; the remaining space is divided into three sections, two are allocated for the fourth column, and one for the fifth.
+  - use `grid-gap:10px;` to set the gap between rows or columns;
+  - align all items vertically `justify-items`
+  - align all items horizontally `align-items`
+
+- Properties to modify the individual child element
+  -  to set the span of the element `grid-column: 1 / 3;`:This will make the item start at the first vertical line of the grid on the left and span to the 3rd line of the grid, consuming two columns.
+  -  similary `grid-row`
+  -  align individual item hortizontally `justify-self`: default is `stretch`
+  -  align individual item vertically `align-self`
+
+- Grid Areas
+
+
+
+
+
+
+
+
+
+
+
+
+
