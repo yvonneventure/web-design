@@ -21,3 +21,8 @@
 >   - [Instructor's solution](https://codepen.io/freeCodeCamp/full/VPaoNP)
 >   - [User Story](https://www.freecodecamp.org/learn/responsive-web-design/responsive-web-design-projects/build-a-survey-form)
 
+> - [Build a Product Landing Page- My Solution](https://codepen.io/YvonneX/pen/BaYajRz?editors=1100)
+>   - [Instructor's solution](https://codepen.io/freeCodeCamp/pen/RKRbwL?editors=1100)
+
+> - [Build a Technical Documentation Page - My Solution](https://codepen.io/YvonneX/pen/BaYaKbO?editors=1100)
+> - [Build a Personal Portfolio Webpage - My Solution](https://codepen.io/YvonneX/pen/eYVYzyg?editors=1100)
