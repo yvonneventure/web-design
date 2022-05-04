@@ -112,6 +112,10 @@ function plusThree(num) {
 const answer = plusThree(5);
 ```
 
+- Global vs. Local scope
+   - Variables which are defined outside of a function block have Global scope.
+   - Variables which are declared without the let or const keywords are automatically created in the global scope whether they are in function or not
+   - Variables which are declared within a function, as well as the function parameters, have local scope. 
 
 
 
