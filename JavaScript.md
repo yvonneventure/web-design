@@ -118,8 +118,45 @@ const answer = plusThree(5);
    - Variables which are declared within a function, as well as the function parameters, have local scope. 
 
 
+- if statement: `true` or `false`
 
+```
+if (condition is true) {
+  statement is executed
+}
 
+//-------for example--------//
+
+function test (myCondition) {
+  if (myCondition) {
+    return "It was true";
+  }
+  return "It was false";
+}
+
+test(true);
+test(false);
+```
+
+- difference between `==` and `===` (same with `!=` and `!==`)
+     - `==` is equlity, and it attempts to convert both values being compared to a common type
+     - `===` does not do type conversion
+
+> `>`, `>=`, `<`, `<=` will also convert data types
+
+```
+1   ==  1  // true
+1   ==  2  // false
+1   == '1' // true
+"3" ==  3  // true
+
+///-----------///
+
+3 ===  3  // true
+3 === '3' // false
+```
+
+- `typeof "3" ` to see the data type
 
 
 
