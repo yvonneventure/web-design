@@ -72,8 +72,45 @@ lastLetter = firstName[firstName.length - 1]
 ```
 
 - Array in JS is like list in python
+   - Append array use `.push()`
+   ```
+   const arr2 = ["Stimpson", "J", "cat"];
+   arr2.push(["happy", "joy"]);   //arr2 has the value ["Stimpson", "J", "cat", ["happy", "joy"]]
+   ```
+   
+   - `.pop()` removes the last element from an array and returns that element.
+   
+   - `.shift()` removes the first element from an array and returns that element
 
+   -  `.unshift()` adds the element at the beginning of the array.
 
+- function in js
+
+```
+
+//--- Basic function-----//
+
+function functionName() {
+  do something;
+}
+
+functionName();          // call function
+
+// ----function with arguments-----//
+
+function functionWithArgs(param1, param2) {
+  console.log(param1 + param2);
+}
+functionWithArgs(1,2);
+
+//--- function with output-----//
+
+function plusThree(num) {
+  return num + 3;
+}
+
+const answer = plusThree(5);
+```
 
 
 
