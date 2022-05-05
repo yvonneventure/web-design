@@ -2,11 +2,14 @@
 
 - Comment in js:
 
+
+ ```javascript
         // this is in-line comment
         
         /* this is 
         multiline comment*/
-        
+  ```
+  
 - 8 Data types in JS 
 
   - undefined: without initial value, variables are undefined and cannot perform manipulation on it.
@@ -20,16 +23,18 @@
 
 - Declare a **Variable** first then assign value to variable
 
+
+ ```javascript
         var a;
         a =7;
         
         var a = 9;  //or create the variable with initial value
-        
+  ```      
 > Best practice: Write variable names in JavaScript in camelCase. 
 > 
 > In camelCase, multi-word variable names have the first word in lowercase and the first letter of each subsequent word is capitalized.
  
- ```
+ ```javascript
  var someVariable;
 var anotherVariableName;
 var thisVariableNameIsSoLong;
@@ -64,7 +69,7 @@ var thisVariableNameIsSoLong;
 
 - get length of the string use `.length` property
 
-```
+```javascript
 lengthOfLastName = LastName.length
 firstLetterOfLastName = lastName[0]
 
@@ -73,7 +78,9 @@ lastLetter = firstName[firstName.length - 1]
 
 - Array in JS is like list in python
    - Append array use `.push()`
-   ```
+
+
+   ```javascript
    const arr2 = ["Stimpson", "J", "cat"];
    arr2.push(["happy", "joy"]);   //arr2 has the value ["Stimpson", "J", "cat", ["happy", "joy"]]
    ```
@@ -86,7 +93,7 @@ lastLetter = firstName[firstName.length - 1]
 
 - function in js
 
-```
+```javascript
 
 //--- Basic function-----//
 
@@ -120,7 +127,7 @@ const answer = plusThree(5);
 
 - if statement: `true` or `false`
 
-```
+```javascript
 if (condition is true) {
   statement is executed
 }
@@ -144,7 +151,7 @@ test(false);
 
 > `>`, `>=`, `<`, `<=` will also convert data types
 
-```
+```javascript
 1   ==  1  // true
 1   ==  2  // false
 1   == '1' // true
@@ -163,7 +170,7 @@ test(false);
 - if, else if, else statements
 
 
-```
+```javascript
 if (num > 15) {
   return "Bigger than 15";
 } 
@@ -177,7 +184,7 @@ else {
 
 - `switch()` function to make choices/options
 
-```
+```javascript
 function caseInSwitch(val) {
   let answer = "";
  
@@ -252,7 +259,37 @@ switch(val) {
 ```
 
 - object data type in js is like dictionary in python
-- 
+
+```javascript
+const myObj = {
+  prop1: "val1",
+  prop2: "val2"
+};
+
+const prop1val = myObj.prop1;
+const prop2val = myObj.prop2;
+
+//----or-------//
+const prop1val = myObj["prop1"]
+const prop2val= myObj["prop1"]
+
+
+//------delete property in object/dictionary ----//
+
+const ourDog = {
+  "name": "Camper",
+  "legs": 4,
+  "tails": 1,
+  "friends": ["everything!"],
+  "bark": "bow-wow"
+};
+
+delete ourDog.bark;
+
+//----update and add property are same as in python----//
+
+
+```
 
 
 
