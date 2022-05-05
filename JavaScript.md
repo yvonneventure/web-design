@@ -158,8 +158,101 @@ test(false);
 
 - `typeof "3" ` to see the data type
 
+- `&&` is and, `||` is or in js
+
+- if, else if, else statements
 
 
+```
+if (num > 15) {
+  return "Bigger than 15";
+} 
+else if (num < 5) {
+  return "Smaller than 5";
+} 
+else {
+  return "Between 5 and 15";
+}
+```
+
+- `switch()` function to make choices/options
+
+```
+function caseInSwitch(val) {
+  let answer = "";
+ 
+ switch(val) {
+  case 1:                           // when val===1, then answer="alpha"
+    answer ="alpha";
+    break;
+    case 2:
+    answer ="beta";
+    break;
+case 3:
+    answer ="gamma";
+    break;
+case 4:
+    answer ="delta";
+    break;
+ }
+  return answer;
+}
+
+caseInSwitch(1);
+
+//--------------use defualt option---------//
+function switchOfStuff(val) {
+  let answer = "";
+ 
+switch(val) {
+  case "a":                       
+    answer ="apple";
+    break;
+    case "b":
+    answer ="bird";
+    break;
+case "c":
+    answer ="cat";
+    break;
+default:
+    answer ="stuff";
+    break
+}
+  return answer;
+}
+
+switchOfStuff(1);
+
+
+//-------------- multiple same options------//
+function sequentialSizes(val) {
+  let answer = "";
+ 
+switch(val) {
+  case 1:
+  case 2:
+  case 3:
+  answer="Low";
+  break;
+  case 4:
+  case 5:
+  case 6:
+  answer="Mid";
+  break;
+  case 7:
+  case 8:
+  case 9:
+  answer="High";
+  break;
+  }
+  return answer;
+  }
+  
+  sequentialSizes(1);
+```
+
+- object data type in js is like dictionary in python
+- 
 
 
 
