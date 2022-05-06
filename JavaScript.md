@@ -259,6 +259,11 @@ switch(val) {
 ```
 
 - object data type in js is like dictionary in python
+ - get value of the key
+ - update property
+ - add property
+ - delete property
+ - checking if property exits `.hasOwnProperty()`
 
 ```javascript
 const myObj = {
@@ -288,12 +293,170 @@ delete ourDog.bark;
 
 //----update and add property are same as in python----//
 
+//--------check if property exists------//
+
+const myObj = {
+  top: "hat",
+  bottom: "pants"
+};
+
+myObj.hasOwnProperty("top");
+myObj.hasOwnProperty("middle");
+
+```
+
+- Simple While loops
+
+```javascript
+const ourArray = [];
+let i = 0;
+
+while (i < 5) {
+  ourArray.push(i);
+  i++;
+}
+```
+
+- simple For loops
+
+ - `for (a; b; c)`, where a is the initialization statement, b is the condition statement, and c is the final expression.
+
+```
+// same as the while loop above
+
+const ourArray = [];
+
+for (let i = 0; i < 5; i+=1) {
+  ourArray.push(i);
+}
+// ourArray will now have the value [0, 1, 2, 3, 4]
+
+//--another example--//
+const arr = [10, 9, 8, 7, 6];
+
+for (let i = 0; i < arr.length; i++) {
+   console.log(arr[i]);
+}
+
+```
+
+- Do... while loops
+
+ - run the do {} part first, then check for while condition
+ - make sure the part in do {} run at least once
+
+```javascript
+const ourArray = [];
+let i = 0;
+
+do {
+  ourArray.push(i);
+  i++;
+} while (i < 5);
+
+```
+
+- recursion
+
+ - Recursion is the concept that a function can be expressed in terms of itself or call itself.
+ - Recursive functions must have a base case(where n <= 0, it returns 1) when they return without calling the function again, otherwise they can never finish executing.
+
+```javascript
+
+//-------simple for loop--------//
+  function multiply(arr, n) {
+    let product = 1;
+    for (let i = 0; i < n; i++) {
+      product *= arr[i];
+    }
+    return product;
+  }
+
+//----replace for loop with recursion-----//
+
+function multiply(arr, n) {
+    if (n <= 0) {
+      return 1;
+    } else {
+      return multiply(arr, n - 1) * arr[n - 1];
+    }
+  }
+```
+
+```javascript
+//----use recursion create countdown-------//
+
+function countdown(n) {
+  if (n < 1) {
+    return [];
+  } else {
+    const arr = countdown(n - 1);
+    arr.unshift(n);
+    return arr;
+  }
+}
+//----------Use Recursion to Create a Range of Numbers--------//
+
+function rangeOfNumbers(startNum, endNum) {
+  if (endNum - startNum < =0) {
+    return [startNum];
+  } else {
+    var numbers = rangeOfNumbers(startNum, endNum - 1);
+    numbers.push(endNum);
+    return numbers;
+  }
+}
 
 ```
 
 
+- creat random numbers in js
 
+ - `Math.random()` function that generates a random decimal number between 0 (inclusive) and 1 (exclusive) : `[0,1)`
 
+```javascript
+Math.floor(Math.random() * 20);  // give us a whole number between 0 and 19.
+
+Math.floor(Math.random() * (max - min + 1)) + min;   // give us a whole number within range [min,max]
+
+```
+
+- `parseInt()` function to convert string to integer 
+
+ - `const a = parseInt("007");`  a will be integer 7
+ - `parseInt(string, radix);` radix specifies the base of the number in the string. 
+ - The radix can be an integer between 2 and 36, default is 10.
+ - `const a = parseInt("10011", 2);` will return 19
+
+- Use the Conditional (Ternary) Operator
+
+ - The conditional operator, also called the ternary operator, can be used as a one line if-else expression.
+
+```javascript
+//----simple if/else statement----//
+
+function findGreater(a, b) {
+  if(a > b) {
+    return "a is greater";
+  }
+  else {
+    return "b is greater or equal";
+  }
+}
+//--- can be rewritten as ---//
+
+function findGreater(a, b) {
+  return a > b ? "a is greater" : "b is greater or equal";
+}
+
+//----------for muliple checks------//
+
+function findGreaterOrEqual(a, b) {
+  return (a === b) ? "a and b are equal" 
+    : (a > b) ? "a is greater" 
+    : "b is greater";
+}
+```
 
 
 
