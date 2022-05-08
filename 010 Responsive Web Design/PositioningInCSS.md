@@ -24,6 +24,11 @@
 - Margin:
   - set `margin:auto;` will center the block elements from four sides
 
+- Z-index
+  - The z-index property specifies the stack order of an element. An element with greater stack order is always in front of an element with a lower stack order.
+  - z-index only works on positioned elements (position: absolute, position: relative, position: fixed, or position: sticky) and flex items (elements that are direct children of display:flex elements).
+
+
 ### CSS flexbox:
 
 - Use of flexbox
