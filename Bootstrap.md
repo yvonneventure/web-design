@@ -4,9 +4,15 @@
 > [Bootstrap documentation](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 >
 > [Bootstrap examples](https://getbootstrap.com/docs/5.1/examples/)
+> 
+> [fontawesome: icon gallery](https://fontawesome.com/)
+> 
+> [Bootsnip: Bootstrap elements gallery](https://bootsnipp.com)
+> 
+> [test for mobile-friendly](https://search.google.com/test/mobile-friendly)
 
 
-## Step 1 of Web Design - WireFrame
+## WireFrame - Step 1 of Web Design
 
 - wireframe vs. mockup
 
@@ -19,6 +25,8 @@
 > - anther great resource of other web designer's portfolio is [dribble](https://dribbble.com/search/website) and you can search by color
 > - sketch online use [balsamiq](https://balsamiq.com/wireframes/)
 > - or wireframe use pencil and paper and download template from [sneakpeekit](https://sneakpeekit.com)
+
+
 
 
 
