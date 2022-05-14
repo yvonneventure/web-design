@@ -92,7 +92,36 @@ lastLetter = firstName[firstName.length - 1]
 
    -  `.unshift()` adds the element at the beginning of the array.
 
+   -  `.splice()` adds and/or removes array elements.
 
+```js
+//array.splice(index, number of items to be removed, item1, ....., itemX);
+
+//At position 2, add 2 elements:
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 0, "Lemon", "Kiwi");
+
+//At position 2, remove 2 items:
+const fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
+fruits.splice(2, 2);
+```
+
+- `.slice()`, unlike all the precious array methods that will modify the arry, `.slice()` only copies a given number of elements to a new array, leaving the array it is called upon untouched. `slice(startindex,endindex)`
+
+```js
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear']; //untouched
+let todaysWeather = weatherConditions.slice(1, 3);  //['snow', 'sleet']
+```
+
+- copy all array elements use spread operator `...`
+
+```js
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];
+
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+```
 
 ### function in js
 
