@@ -76,7 +76,8 @@ firstLetterOfLastName = lastName[0]
 lastLetter = firstName[firstName.length - 1]
 ```
 
-- Array in JS is like list in python
+### Array in JS is like list in python
+
    - Append array use `.push()`
 
 
@@ -91,7 +92,9 @@ lastLetter = firstName[firstName.length - 1]
 
    -  `.unshift()` adds the element at the beginning of the array.
 
-- function in js
+
+
+### function in js
 
 ```javascript
 
@@ -119,7 +122,8 @@ function plusThree(num) {
 const answer = plusThree(5);
 ```
 
-- Global vs. Local scope
+### Global vs. Local scope
+
    - Variables which are defined outside of a function block have Global scope.
    - Variables which are declared without the let or const keywords are automatically created in the global scope whether they are in function or not
    - Variables which are declared within a function, as well as the function parameters, have local scope. 
@@ -258,6 +262,9 @@ switch(val) {
   sequentialSizes(1);
 ```
 
+
+### Object
+
 - object data type in js is like dictionary in python
  - get value of the key
  - update property
@@ -304,6 +311,8 @@ myObj.hasOwnProperty("top");
 myObj.hasOwnProperty("middle");
 
 ```
+
+### Loops
 
 - Simple While loops
 
