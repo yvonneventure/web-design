@@ -123,7 +123,14 @@ let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
 let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
 ```
 
-### function in js
+-  `.indexOf()` takes an element as a parameter, and when called, it returns the position, or index, of that element, or `-1` if the element does not exist on the array.
+
+```js
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+fruits.indexOf('apples');
+```
+
+### Function in js
 
 ```javascript
 
@@ -339,7 +346,20 @@ const myObj = {
 myObj.hasOwnProperty("top");
 myObj.hasOwnProperty("middle");
 
+
+//--------iterate through keys of an object with for...in -----//
+for (let user in users) {
+  console.log(user);
+}
+
+
 ```
+
+- use `Object.keys(objectname)` return an array with keys. 
+
+
+
+
 
 ### Loops
 
