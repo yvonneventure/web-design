@@ -33,7 +33,10 @@ let testRegex = /Code/i;
 testRegex.test(testStr);    // here returns true, even C is capitalized
 ```
 
-### Use `.match()` method to extract matches in an array
+### Use `.match()` method to extract match in an array
+
+By default, just extract the first match.
+
 
 ```js
 "Hello, World!".match(/Hello/);   // return ["Hello"]
@@ -44,7 +47,7 @@ let ourRegex = /expressions/;
 ourStr.match(ourRegex);       // return ["expressions"]
 ```
 
-To extract a pattern more than once, you can use the `g` flag.
+To extract multiple matches, you can use the `g` flag.
 
 ```js
 let testStr = "Repeat, Repeat, Repeat";
@@ -148,6 +151,61 @@ soccerWord.match(goRegex); //return ["goooooooo"]
 gPhrase.match(goRegex);  // return ["g"]
 oPhrase.match(goRegex); // return null
 ```
+
+### Lazy Matching vs. Greedy Matching
+
+Greedy match finds the **longest** possible part of a string that fits the regex pattern and returns it as a match. 
+
+Lazy match, which finds the **smallest** possible part of the string that satisfies the regex pattern.
+
+For example,apply the regex `/t[a-z]*i/` to the string `"titanic"`. This regex is basically a pattern that starts with `t`, ends with `i`, and has some letters in between. Regular expressions are by default greedy, so the match would return `["titani"]`. It finds the largest sub-string possible to fit the pattern.
+
+You can use the `?` character to change it to lazy matching. `"titanic"` matched against the adjusted regex of `/t[a-z]*?i/` returns `["ti"]`.
+
+Or can think of `n?` to match any zero or 1 occurence of n.
+
+```js
+let text = "<h1>Winter is coming</h1>";
+let myRegex = /<.*>/; //return entire ["<h1>Winter is coming</h1>"]
+let myRegex = /<.*?>/; // return <h1> tag
+let result = text.match(myRegex); 
+```
+
+#### Match Beginning String Patterns use `^` and Ending use `$`
+
+The caret character (`^`) inside a character set to create a negated character set in the form `[^thingsThatWillNotBeMatched]`. Outside of a character set, the caret is used to search for patterns at the beginning of strings.
+
+```js
+let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/; // begin with Ricky
+firstRegex.test(firstString); // return true
+
+
+let theEnding = "This is a never ending story";
+let storyRegex = /story$/;   //ends with story
+storyRegex.test(theEnding);
+```
+
+#### Use `\w` matchs `[A-Za-z0-9_]` and `\W` match `[^A-Za-z0-9_]`
+
+-  `\w` matches one character that's either upper and lowercase letters plus numbers. Note, this character class also includes the underscore character (`_`).
+
+- `\W` match everything but letters and numbers and underscore`_`.
+
+```js
+let shortHand = /\W/;
+let numbers = "42%";
+let sentence = "Coding!";
+numbers.match(shortHand); // return ["%"]
+sentence.match(shortHand); // return ["!"]
+```
+
+#### Match all numbers use `\d` and non-numbers `\D`
+
+- `\d` is shorthand for `[0-9]`
+- `\D` is shorthand for `[^0-9]`
+
+
 
 
 
