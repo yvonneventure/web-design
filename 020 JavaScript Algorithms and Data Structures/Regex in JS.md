@@ -234,37 +234,61 @@ To match only the string hah with the letter a appearing at least 3 times, your 
 To match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
 
 
+#### Lookahead
+
+- Positive lookahead  is used as `(?=...)` where the `...` is the required part that is not matched.
+
+- Negative lookahead is used as `(?!...)` where the `...` is the pattern that you do not want to be there. The rest of the pattern is returned if the negative lookahead part is not present.
+
+```js
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/;
+let qRegex = /q(?!u)/;
+quit.match(quRegex);    //return ["q"]
+noquit.match(qRegex);   //return ["q"]
+```
+
+A more practical use of lookaheads is to check two or more patterns in one string. 
+
+ Here is a (naively) simple password checker that looks for between 3 and 6 characters and at least one number:
+ 
+```js
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password);
+```
+
+#### Grouping checks with `()`
+
+If you want to find either `Penguin` or `Pumpkin` in a string, you can use the following Regular Expression: `/P(engu|umpk)in/g`
+
+#### Capture group
 
 
 
+```js
+let repeatStr = "row row row your boat";
+let repeatRegex = /(\w+) \1 \1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["row row row", "row"]
 
+let testString = "test test test";
+let reRegex = /(test)\s\1/;  // means /test\stest/
+reRegex.match(testString);  //return ["test test"]
 
+let testString = "test test test";
+let reRegex = /(test)(\s)\1\2\1/;
+reRegex.match(testString);  //return ["test test test"]
+// \1 repeats (test) \2 repeats (\s)
+```
 
+You can also access capture groups in the replacement string with dollar signs (`$`).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```js
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+//return "Camp Code"
+```
 
 
 
