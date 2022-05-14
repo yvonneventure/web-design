@@ -109,6 +109,47 @@ quoteSample.match(myRegex);
 // return [ ' ', 'b', 'l', 'n', 'd', ' ', 'm', 'c', '.' ]
 ```
 
+### Match characters that occur one or more times use `+`
+
+Use `+` to check if character or pattern repeated consecutively.
+
+For example, `/a+/g` would find one match in `abc` and return `["a"]`. Because of the `+`, it would also find a single match in `aabc` and return `["aa"]`.
+
+If it were instead checking the string `abab`, it would find two matches and return `["a", "a"]` because the `a` characters are not in a row - there is a `b` between them.
+
+```js
+let difficultSpelling = "Mississippi";
+let myRegex = /si+/gi;   // match s, ss, sssss, etc
+let result = difficultSpelling.match(myRegex);
+console.log(result); // return [ 'ss', 'ss' ]
+
+let myRegex = /si+/gi; // match si, sii, siiii, etc
+
+
+let difficultSpelling = "Misisissippi";
+let myRegex = /(si)+/gi; // match 'si' for any times
+let result = difficultSpelling.match(myRegex);
+console.log(result); // return [ 'sisi', 'si' ]
+
+let difficultSpelling = "Missisissippi";
+let myRegex = /[si]+/gi; //match any s or i for any characters
+let result = difficultSpelling.match(myRegex);
+console.log(result); // return [ 'issisissi', 'i' ]
+```
+
+### Match characters that occur zero or more times use `*`
+
+```js
+let soccerWord = "gooooooooal!";
+let gPhrase = "gut feeling";
+let oPhrase = "over the moon";
+let goRegex = /go*/;
+soccerWord.match(goRegex); //return ["goooooooo"]
+gPhrase.match(goRegex);  // return ["g"]
+oPhrase.match(goRegex); // return null
+```
+
+
 
 
 
