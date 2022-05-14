@@ -98,6 +98,17 @@ jennyStr.match(myRegex);
 // return ["S","a","m","8","6","7"]
 ```
 
+#### Characters don't want to match `[^]`
+
+For example, `/[^aeiou]/gi` matches all characters that are not a vowel. Note that characters like `., !, [, @, /` and *white space* are matched too.
+
+```js
+let quoteSample = "3 blind mice.";
+let myRegex = /[^aeiou0-9]/gi; // match charaters not vowels not numbers
+quoteSample.match(myRegex);  
+// return [ ' ', 'b', 'l', 'n', 'd', ' ', 'm', 'c', '.' ]
+```
+
 
 
 
