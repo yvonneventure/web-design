@@ -59,6 +59,46 @@ testStr.match(repeatRegex);  //here returns ["Repeat", "Repeat", "Repeat"]
 > can also use flags together `/search/gi`
 
 
+### Use wildcard `.` match any single character 
+
+For example, if you wanted to match `hug, huh, hut, and hum`, you can use the regex `/hu./` to match all four words.
+
+```js
+let humStr = "I'll hum a song";
+let hugStr = "Bear hug";
+let huRegex = /hu./;
+huRegex.test(humStr);   // return true
+huRegex.test(hugStr);   // return true
+```
+
+### Match Single Character with Multiple Possibilities use `[]`
+
+For example, you want to match `bag, big, and bug but not bog`. You can create the regex `/b[aiu]g/` to do this.
+
+```js
+let bigStr = "big";
+let bagStr = "bag";
+let bugStr = "bug";
+let bogStr = "bog";
+let bgRegex = /b[aiu]g/;
+bigStr.match(bgRegex);   // return ["big"]
+bagStr.match(bgRegex);   // return ["bag"]
+bugStr.match(bgRegex);   // return ["bug"]
+bogStr.match(bgRegex);  // return null
+```
+
+Inside a character set, you can define a range of characters to match using a hyphen character: `-`. For example, to match lowercase letters a through e you would use `[a-e]`.
+
+#### match any numbers and characters use `/[a-z0-9]/gi`
+
+```js
+let jennyStr = "Sam867";
+let myRegex = /[a-z0-9]/ig;
+jennyStr.match(myRegex); 
+// return ["S","a","m","8","6","7"]
+```
+
+
 
 
 
