@@ -169,7 +169,16 @@ let text = "<h1>Winter is coming</h1>";
 let myRegex = /<.*>/; //return entire ["<h1>Winter is coming</h1>"]
 let myRegex = /<.*?>/; // return <h1> tag
 let result = text.match(myRegex); 
+
+
+let american = "color";
+let british = "colour";
+let rainbowRegex= /colou?r/;
+rainbowRegex.test(american);
+rainbowRegex.test(british);
 ```
+
+
 
 #### Match Beginning String Patterns use `^` and Ending use `$`
 
@@ -214,6 +223,15 @@ sentence.match(shortHand); // return ["!"]
 - `\n` match a new line character
 
 [Regex references on W3School](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
+
+
+####  Quantity specifiers `{}`
+
+For example, to match only the letter a appearing between 3 and 5 times in the string ah, your regex would be /a{3,5}h/.
+
+To match only the string hah with the letter a appearing at least 3 times, your regex would be /ha{3,}h/.
+
+To match only the word hah with the letter a 3 times, your regex would be /ha{3}h/.
 
 
 
