@@ -206,7 +206,14 @@ sentence.match(shortHand); // return ["!"]
 - `\D` is shorthand for `[^0-9]`
 
 
+#### Match characters with special meaning
 
+- `\s` match a whitespace character
+- `\S` match a non-whitespace character
+- `\t` match a tab character
+- `\n` match a new line character
+
+[Regex references on W3School](https://www.w3schools.com/jsref/jsref_obj_regexp.asp)
 
 
 
