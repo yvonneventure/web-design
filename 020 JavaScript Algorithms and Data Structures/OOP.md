@@ -147,8 +147,82 @@ Bird.prototype = {
 Bird.prototype.isPrototypeOf(duck);  // return true
 ``` 
 
+#### Prototype Chain
+
+All objects in JavaScript (with a few exceptions) have a `prototype`. Also, an object’s `prototype` itself is an object.
+
+The prototype of `Bird.prototype` is `Object.prototype`. `Object.prototype` is on the top of the prototype inheritance chain, Bird objects inherit from `Object.prototype`.
+
+❗️ Object> Bird > Duck
+
+Object is the supertype for all objects in js. `Bird` is the supertype for `duck`, while `duck` is the subtype. `Object` is a supertype for both `Bird` and `duck`.
 
 
+> ❗️There's a principle in programming called **Don't Repeat Yourself (DRY)**. The reason repeated code is a problem is because any change requires fixing code in multiple places. This usually means more work for programmers and more room for errors.
+
+
+If a method or property shared by multiple objects, then it's better to create a supertype or parent.
+
+```js
+
+unction Cat(name) {
+  this.name = name;
+}
+
+Cat.prototype = {
+  constructor: Cat
+};
+
+function Bear(name) {
+  this.name = name;
+}
+
+Bear.prototype = {
+  constructor: Bear
+};
+
+function Animal() {}
+
+Animal.prototype = {
+  constructor: Animal,
+  eat: function() {
+    console.log("nom nom nom");
+  }
+};
+
+// for inheritance, first create an instance of supertype
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);
+Bird.prototype.constructor = Bird;  // set all instances of Bird were constructed by Bird not Animal
+let duck = new Bird();
+duck.constructor
+```
+
+To override inherited methods, simpley set the prototype
+
+```js
+function Animal() { }
+Animal.prototype.eat = function() {
+  return "nom nom nom";
+};
+function Bird() { }
+
+Bird.prototype = Object.create(Animal.prototype);
+
+Bird.prototype.eat = function() {
+  return "peck peck peck";
+};
+
+let duck = new Bird();
+duck.eat()
+```
+
+This is how JavaScript looks for the method on the prototype chain of duck:
+
+1. duck => Is eat() defined here? No.
+2. Bird => Is eat() defined here? => Yes. Execute it and stop searching.
+3. Animal => eat() is also defined, but JavaScript stopped searching before reaching this level.
+4. Object => JavaScript stopped searching before reaching this level.
 
 
 
