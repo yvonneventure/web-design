@@ -225,14 +225,99 @@ This is how JavaScript looks for the method on the prototype chain of duck:
 4. Object => JavaScript stopped searching before reaching this level.
 
 
+### Use *Mixin* for unrelated Objects
+
+As you have seen, behavior is shared through inheritance. However, there are cases when inheritance is not the best solution. Inheritance does not work well for unrelated objects like Bird and Airplane. They can both fly, but a Bird is not a type of Airplane and vice versa.
+
+For unrelated objects, it's better to use mixins. A mixin allows other objects to use a collection of functions.
+
+```js
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+
+// now bird and plane can both fly, both return " Flying, wooosh!"
+
+bird.fly();
+plane.fly();
+```
+
+#### Prevent properties in object from being modified
+
+- Below `this.hatchedEgg` can be accessed and changed later
+
+```js
+function Bird() {
+  this.hatchedEgg = 10;
+  }
+ ```
+
+- To make this public property private is by creating a variable within the constructor function. This changes the scope of that variable to be within the constructor function versus available globally. This way, the variable can only be accessed and changed by methods also within the constructor function.
+
+function Bird() {
+  let hatchedEgg = 10;
+
+  this.getHatchedEggCount = function() { 
+    return hatchedEgg;
+  };
+}
+let ducky = new Bird();
+ducky.getHatchedEggCount();
+```
+
+Here `getHatchedEggCount` is a privileged method, because it has access to the private variable `hatchedEgg`. This is possible because `hatchedEgg` is declared in the same context as `getHatchedEggCount`. In JavaScript, a function always has access to the context in which it was created. This is called `closure`.
 
 
+#### Immediately Invoked Function Expression (IIFE)
 
+```js
+(function () {
+  console.log("Chirp, chirp!");
+})();
+```
 
+This is an anonymous function expression that executes right away, and outputs `Chirp, chirp!` immediately.
 
+Note that the function has no name and is not stored in a variable. The two parentheses () at the end of the function expression cause it to be immediately executed or invoked. This pattern is known as an immediately invoked function expression or IIFE.
 
+An immediately invoked function expression (IIFE) is often used to group related functionality into a single object or module.
 
+```js
+// group two mixins into a module
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+motionModule.glideMixin(duck);
+duck.glide();
+```
 
+This returned object contains all of the mixin behaviors as properties of the object. The advantage of the module pattern is that all of the motion behaviors can be packaged into a single object that can then be used by other parts of your code. 
 
 
 
