@@ -108,6 +108,44 @@ console.log(ownProps);   // return ["name"]
 console.log(prototypeProps);  // return ["numLegs"]
 ```
 
+Adding prototype properties individually can be tedious, we can use an new object to set prototype all at once. 
+
+
+
+```js
+Bird.prototype = {
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
+
+❗️this will erases `constructor` property.
+
+To fix this, whenever a prototype is manually set to a new object, remember to define the constructor property:
+
+```js
+Bird.prototype = {
+  constructor: Bird,   //!!!
+  numLegs: 2,
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name); 
+  }
+};
+```
+
+`duck` inherits its `prototype` from the `Bird` constructor function. You can show this relationship with the `isPrototypeOf` method:
+
+```js
+Bird.prototype.isPrototypeOf(duck);  // return true
+``` 
 
 
 
