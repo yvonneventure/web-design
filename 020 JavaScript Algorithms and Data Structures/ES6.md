@@ -93,6 +93,81 @@ const maximus = Math.max(...arr);
 const spreaded = ...arr;
 ```
 
+### Destructuring Assignment 
+
+- For extracting and reassign values in object.
+
+```js
+const user = { name: 'John Doe', age: 34 };
+const { name, age } = user;
+
+//above is equal to
+const user = { name: 'John Doe', age: 34 };
+
+const name = user.name;
+const age = user.age;
+```
+
+- Reassgin a new variable name:
+
+```js
+const user = { name: 'John Doe', age: 34 };
+const { name: userName, age: userAge } = user;
+
+// above is equal to 
+const userName = user.name;
+const userAge = user.age;
+```
+
+- Use destructuring Assignment in Nested Objects
+
+```js
+const user = {
+  johnDoe: { 
+    age: 34,
+    addr: '201 baker street'
+  }
+};
+
+// extract and assgin with the same name
+const { johnDoe: { age, addr }} = user;
+
+// extract and assign with new name
+const { johnDoe: { age: userAge, addr: userAddr }} = user;
+```
+
+- Use destructuring assignment in Arrays
+
+One key difference between the spread operator and array destructuring is that the spread operator unpacks all contents of an array into a comma-separated list. Consequently, you cannot pick or choose which elements you want to assign to variables.
+
+Destructuring will allow you to choose which element to reassign.
+
+```js
+const [a, b] = [1, 2, 3, 4, 5, 6];
+console.log(a, b);  //return 1,2
+
+// use comma to access the value at any index in array
+
+const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, c);   // return 1,2,5
+
+```
+
+- Use rest parameter
+
+The rest element only works correctly as the last variable in the list. Cannot use the rest parameter in the middle of the array, as don't know how many elements `...arr` represents.
+
+```js
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+console.log(a, b);   // return 1,2
+console.log(arr);   // return array [3,4,5,7]
+```
+
+- Use destructuring assignment to Pass an Object as a Function's Parameters
+
+
+
+
 
 
 
