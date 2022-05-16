@@ -165,6 +165,69 @@ console.log(arr);   // return array [3,4,5,7]
 
 - Use destructuring assignment to Pass an Object as a Function's Parameters
 
+When object is passed to the above function, the values are destructured from the function parameter for use within the function, no need to sepcify the name of the object.
+
+```js
+const stats = {
+  max: 56.78,
+  standard_deviation: 4.34,
+  median: 34.54,
+  mode: 23.87,
+  min: -0.75,
+  average: 35.85
+};
+
+const statsUpdate=({mode, average})=>{}; 
+
+const half = ({ max, min }) => (max + min) / 2.0;
+```
+
+### Template Literal
+
+- use `${variable name}` so that no need to use `+` for concat
+- use ` instead of single or double quotes
+- the result will be a mutli-line string, even though no `\n` used
+
+```js
+const person = {
+  name: "Kate",
+  age: 56
+};
+
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age} years old.`;
+
+console.log(greeting);
+
+/* return
+Hello, my name is Kate!
+I am 56 years old.
+*/
+```
+
+
+- Declare object use shorthand
+
+```js
+const createPerson = (name, age, gender) => ({name,age,gender});
+```
+
+- function within object use shorthand
+
+
+```js
+const bicycle = {
+  gear: 2,
+  setGear(newGear) {
+    this.gear=newGear;
+  }
+};
+
+bicycle.setGear(3);
+console.log(bicycle.gear);
+```
+
+
 
 
 
