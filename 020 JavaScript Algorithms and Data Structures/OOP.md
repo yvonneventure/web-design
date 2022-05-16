@@ -61,5 +61,84 @@ canary instanceof Bird;  // return false
 
 ```
 
+You can **not** add a new property to an existing object constructor by how you normally add property in object `object.newProperty=""`
+
+To add a new property or method to a constructor, you can either add it directly to constructor function or use `prototype`.
+
+```js
+function Person(first, last, age, eyecolor) {
+  this.firstName = first;
+  this.lastName = last;
+  this.age = age;
+  this.eyeColor = eyecolor;
+}
+
+Person.prototype.nationality = "English";
+
+Person.prototype.name = function() {
+  return this.firstName + " " + this.lastName;
+};
+```
+
+Now all the objects created from constructor will have these added property and method.
+
+When we have more than one instances created from the constructor and they have same preporty, instead of using their own property seperately, they can also use this `prototype` property to reduce line of codes.
+
+- Own properties vs prototype property
+
+```js
+function Bird(name) {
+  this.name = name;                //own property
+}
+Bird.prototype.numLegs = 2;       // prototype property
+let duck = new Bird("Donald");
+
+let ownProps = [];
+let prototypeProps = [];
+
+for (let property in duck) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  } else {
+    prototypeProps.push(property);
+  }
+}
+
+console.log(ownProps);   // return ["name"]
+console.log(prototypeProps);  // return ["numLegs"]
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
