@@ -66,6 +66,32 @@ console.log(greeting());    // return "Hello Anyone"
 ```
 
 
+### `...args` (rest parameter) in js like `*args` in python
+
+To create functions that take a variable number of arguments. 
+
+These arguments are stored in an **array** that can be accessed later from inside the function.
+
+```js
+function howMany(...args) {
+  return "You have passed " + args.length + " arguments.";
+}
+console.log(howMany(0, 1, 2));
+console.log(howMany("string", null, [1, 2, 3], { }));
+```
+
+### `...arr` (spread operator)
+
+`...arr` returns an unpacked array. In other words, it spreads the array. However, the spread operator only works in-place, like in an argument to a function or in an array literal.
+
+```js
+const arr = [6, 89, 3, 45];
+const maximus = Math.max(...arr);
+
+
+// below code will not work
+const spreaded = ...arr;
+```
 
 
 
