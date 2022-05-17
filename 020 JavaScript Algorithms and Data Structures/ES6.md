@@ -228,6 +228,46 @@ console.log(bicycle.gear);
 ```
 
 
+### Class/object
+
+Pascal case should be used in class name.
+
+Use `class` rather than a function to create class in ES6.
+
+```js
+class SpaceShuttle {
+  constructor(targetPlanet) {
+    this.targetPlanet = targetPlanet;
+  }
+}
+const zeus = new SpaceShuttle('Jupiter');
+```
+
+- **Getter functions** are meant to simply return (get) the value of an object's private variable to the user without the user directly accessing the private variable.
+
+- **Setter functions** are meant to modify (set) the value of an object's private variable based on the value passed into the setter function. This change could involve calculations, or even overwriting the previous value completely.
+
+```js
+class Book {
+  constructor(author) {
+    this._author = author;
+  }
+  // getter
+  get writer() {
+    return this._author;
+  }
+  // setter
+  set writer(updatedAuthor) {
+    this._author = updatedAuthor;
+  }
+}
+const novel = new Book('anonymous');
+console.log(novel.writer);   // return 'anonymous'
+novel.writer = 'newAuthor';
+console.log(novel.writer);  // return 'newAuthor'
+```
+
+>  It is convention to precede the name of a private variable with an underscore `_`. 
 
 
 
