@@ -28,7 +28,7 @@ When functions are passed in to or returned from another function, then those fu
 
 - Do not change things
 
-Changes lead to bugs. It's easier to prevent bugs knowing that your functions don't change anything, including the function arguments or any global variable.
+Changes lead to bugs. It's easier to prevent bugs knowing that your functions don't change anything, including the function arguments or any global variable. For example, use `slice` rather than `splice`.
 
 In functional programming, changing or altering things is called mutation, and the outcome is called a side effect. A function, ideally, should be a pure function, meaning that it does not cause any side effects.
 
@@ -74,10 +74,42 @@ console.log(bookList);
 
 ```
 
+### `map` method
 
+The `map` method iterates over each item in an array and returns a new array containing the results of calling the callback function on each element. It does this without mutating the original array.
 
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
 
+const names = users.map(user => user.name);
+console.log(names);   // return [ 'John', 'Amy', 'camperCat' ]
+```
 
+When the callback is used, it is passed three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the map method was called.
+
+### `filter` method
+
+`filter` calls a function on each element of an array and returns a new array containing only the elements for which that function returns true.
+
+```js
+const users = [
+  { name: 'John', age: 34 },
+  { name: 'Amy', age: 20 },
+  { name: 'camperCat', age: 10 }
+];
+
+const usersUnder30 = users.filter(user => user.age < 30);
+console.log(usersUnder30); 
+// return [ { name: 'Amy', age: 20 }, { name: 'camperCat', age: 10 } ]
+```
+
+The callback function accepts three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the filter method was called.
+
+### `concat` method
 
 
 
