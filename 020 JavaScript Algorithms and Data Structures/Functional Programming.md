@@ -74,7 +74,7 @@ console.log(bookList);
 
 ```
 
-### `map` method
+### `map()` method
 
 The `map` method iterates over each item in an array and returns a new array containing the results of calling the callback function on each element. It does this without mutating the original array.
 
@@ -91,7 +91,7 @@ console.log(names);   // return [ 'John', 'Amy', 'camperCat' ]
 
 When the callback is used, it is passed three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the map method was called.
 
-### `filter` method
+### `filter()` method
 
 `filter` calls a function on each element of an array and returns a new array containing only the elements for which that function returns true.
 
@@ -109,10 +109,56 @@ console.log(usersUnder30);
 
 The callback function accepts three arguments. The first argument is the current element being processed. The second is the index of that element and the third is the array upon which the filter method was called.
 
-### `concat` method
+### `concat()` method
 
+Concatenation means to join items end to end and does not change the original array. `push` will change the orgianl array.
 
+```js
+[1, 2, 3].concat([4, 5, 6]);  //return [1, 2, 3, 4, 5, 6]
 
+```
+
+### `reduce()` method
+
+The `reduce` method allows for more general forms of array processing, and it's possible to show that both `filter` and `map` can be derived as special applications of reduce. The `reduce` method iterates over each item in an array and returns a single value (i.e. string, number, object, array). This is achieved via a callback function that is called on each iteration.
+
+The callback function accepts four arguments. The first argument is known as the accumulator, which gets assigned the return value of the callback function from the previous iteration, the second is the current element being processed, the third is the index of that element and the fourth is the array upon which `reduce` is called.
+
+```js
+function getRating(watchList){
+  
+  const averageRating = watchList
+    // Use filter to find films directed by Christopher Nolan
+    .filter(film => film.Director === "Christopher Nolan")
+    // Use map to convert their ratings from strings to numbers
+    .map(film => Number(film.imdbRating))
+    // Use reduce to add together their ratings
+    .reduce((sumOfRatings, rating) => sumOfRatings + rating) /
+  // Divide by the number of Nolan films to get the average rating
+  watchList.filter(film => film.Director === "Christopher Nolan").length;
+  // Add your code above this line
+  return averageRating;
+}
+
+console.log(getRating(watchList));
+```
+
+#### higher-order function `map()`,`filter()`, or `reduce()` exercise
+
+```js
+const squareList = (arr) => {
+  // Only change code below this line
+  return arr
+          .filter(num => num > 0 && num % parseInt(num) === 0)
+          .map(num => Math.pow(num, 2));
+  // Only change code above this line
+};
+
+const squaredIntegers = squareList([-3, 4.8, 5, 3, -3.2]);
+console.log(squaredIntegers);
+```
+
+### `sort()` method
 
 
 
