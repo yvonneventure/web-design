@@ -160,19 +160,116 @@ console.log(squaredIntegers);
 
 ### `sort()` method
 
+The `sort` method sorts the elements of an array according to the callback function.
 
+```js
+function ascendingOrder(arr) {
+  return arr.sort(function(a, b) {
+    return a - b;
+  });
+}
 
+ascendingOrder([1, 5, 2, 3, 4]);  // return  [1, 2, 3, 4, 5]
 
+function reverseAlpha(arr) {
+  return arr.sort(function(a, b) {
+    return a === b ? 0 : a < b ? 1 : -1;
+    // a equal b then 0, a <b then 1, a>b then -1
+  });
+}
 
+reverseAlpha(['l', 'h', 'z', 'b', 's']); // return ['z', 's', 'l', 'h', 'b']
+```
 
+❗️ A side effect of the `sort` method is that it changes the order of the elements in the original array. In other words, it mutates the array in place. One way to avoid this is to first concatenate an empty array to the one being sorted (remember that `slice` and `concat` return a new array), then run the `sort` method.
 
+```js
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  
+  return [].concat(arr).sort(function(a, b) {
+    return a - b;
+  });
+  
+}
+nonMutatingSort(globalArray);
+```
 
+### Split a String into an Array Using the `split()` Method
 
+The `split` method splits a string into an array of strings. It takes an argument for the delimiter, which can be a character to use to break up the string or a regular expression. For example, if the delimiter is a space, you get an array of words, and if the delimiter is an empty string, you get an array of each character in the string.
 
+```js
+const str = "Hello World";
+const bySpace = str.split(" ");  // return ["Hello", "World"]
 
+const otherString = "How9are7you2today";
+const byDigits = otherString.split(/\d/);  //return ["How", "are", "you", "today"]
+```
 
+### Combine an Array into a String Using the `join()` Method
 
+The `join` method is used to join the elements of an array together to create a string. It takes an argument for the delimiter that is used to separate the array elements in the string.
 
+```js
+const arr = ["Hello", "World"];
+const str = arr.join(" ");  //return "Hello World"
+```
+
+### Use the `every()` Method to Check that Every Element in an Array Meets a Criteria
+
+The `every` method works with arrays to check if every element passes a particular test. It returns a Boolean value - `true` if all values meet the criteria, `false` if not.
+
+```js
+const numbers = [1, 5, 8, 0, 10, 11];
+
+numbers.every(function(currentValue) {
+  return currentValue < 10;
+});
+// return false here
+```
+
+### Use the `some` Method to Check that Any Elements in an Array Meet a Criteria
+
+The `some` method works with arrays to check if ***any*** element passes a particular test. Return `true` or `false`.
+
+```js
+const numbers = [10, 50, 8, 220, 110, 11];
+
+numbers.some(function(currentValue) {
+  return currentValue < 10;
+});
+// return true
+```
+
+### Currying 
+
+The ***arity*** of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1. In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+
+```js
+// this is uncurried function
+function unCurried(x, y,z) {
+  return x + y + z;
+}
+// this is curried function, it only takes one argument
+function curried(x) {
+  // Add your code below this line
+  return function(y) {
+    return function(z) {
+      return x + y + z;
+    };
+  };
+}
+
+// curried function can also be written like below
+function curried(x) {
+  return y => z => x + y + z;
+}
+// or like below
+const curried = x => y =>z => x + y + z
+//return 60
+curried(10)(20)(30);
+```
 
 
 
