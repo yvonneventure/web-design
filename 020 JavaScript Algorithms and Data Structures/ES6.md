@@ -270,10 +270,71 @@ console.log(novel.writer);  // return 'newAuthor'
 >  It is convention to precede the name of a private variable with an underscore `_`. 
 
 
+#### Import and export codes
 
+First, create a script in your **HTML** document with a `type` of `module`. Here’s an example:
 
+```js
+<script type="module" src="filename.js"></script>
+```
 
+`export` the named functions/variables you need in the js file.
 
+```js
+export const add = (x, y) => {
+  return x + y;
+}
+
+//or below way, both works
+
+const add = (x, y) => {
+  return x + y;
+}
+
+export { add };
+
+// export multiple variable or functions
+export { add, subtract };
+```
+
+`import` the part you need in js.
+
+```js
+import { add, subtract } from './math_functions.js';
+
+//import everything from file
+
+import * as myMathModule from "./math_functions.js";
+
+myMathModule.add(2,3);
+myMathModule.subtract(5,3);
+```
+
+use `export default` if only **one** value is being exported from a file. It is also used to create a fallback value for a file or module.
+
+```js
+// this is an example of export default a named function
+export default function add(x, y) {
+  return x + y;
+}
+
+// this is an example of export anonymous function
+export default function(x, y) {
+  return x + y;
+}
+```
+
+> ❗️Since `export default` is used to declare a fallback value for a module or file, you can only have one value be a default export in each module or file. Additionally, you cannot use export default with `var`, `let`, or `const`
+
+To `import` an `export default`
+
+```js
+import add from "./math_functions.js";
+
+/* add here is not in curly barces {}. add here is simply a variable name for whatever the default export of the math_functions.js file is. You can use any name here when importing a default.*/
+```
+
+#### JavaScript Promise
 
 
 
