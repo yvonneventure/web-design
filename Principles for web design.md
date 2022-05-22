@@ -100,6 +100,58 @@ Don’t combine a Serif with a Serif and a Sans-Serif with a Sans-Serif because 
   - Things that you should contrast: Serif-ness (for instance, one font should be Serif and the other Sans-Serif) and Weights.
   -  Weight means how heavy or bold your text is. Most design software have a whole range of weights. For example, light, medium, bold, extra bold, and so on. Play around with different weights contrasting them to create interesting designs.
 
+
+### User Interface Design (UI Design)
+
+#### 1. Create Hierarchy
+
+- Use pop colors
+- Consider Size
+
+#### 2. Layout
+
+![layout](https://user-images.githubusercontent.com/103771536/169720546-1cbdab42-aefd-4460-9a15-fac903b8c64d.jpg)
+
+- too long vs. too short
+
+34 charaters per line are most comfortable.
+
+![IMG_3078](https://user-images.githubusercontent.com/103771536/169720611-b036bd69-387f-4e9b-bbfc-07195ba75461.jpg)
+
+#### 3. Alignment
+
+Reduce the number of alignments.
+
+![less-alignments](https://user-images.githubusercontent.com/103771536/169720986-2f0f61d7-17b3-496f-a671-b9ae4bf38fef.jpg)
+
+![reduce-alignments](https://user-images.githubusercontent.com/103771536/169720994-9be2900c-c788-4a53-b67f-7ad40769e15f.jpg)
+
+
+#### 4. White space
+
+![white-space](https://user-images.githubusercontent.com/103771536/169720973-070f7730-7b8f-45bd-9297-aada75a258d7.jpg)
+
+
+#### 5. Audience
+
+![Audience](https://user-images.githubusercontent.com/103771536/169721011-b2a8804c-6a34-4a83-bd82-aa400052615f.jpg)
+
+
+
+### User Experience Design (UX Design)
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Practice: Use Canva to Create UI Design
 
 > [Design for hotel](https://www.canva.com/design/DAFA9-omLkw/t8VQ4AuBmKOtCO5fnvC1Mw/view?website#2:a-hotel)
