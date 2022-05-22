@@ -140,6 +140,23 @@ Reduce the number of alignments.
 
 ### User Experience Design (UX Design)
 
+#### 1. Simplicity
+
+ALWAYS goes for simple.
+
+#### 2. Consistency
+
+Consistent color scheme, fonts, alignments...
+
+#### 3. Reading Pattern
+
+F-Pattern & Z-Pattern
+
+![reading-pattern](https://miro.medium.com/max/1400/1*IWyQqmF2DNGh-CPadIp2fA.png)
+
+
+#### 4. All platform design - Responsiveness (Mobile, laptop...)
+
 
 
 
