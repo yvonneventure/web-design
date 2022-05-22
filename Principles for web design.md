@@ -1,14 +1,15 @@
 # How to create a website people will love
 
-## Four Pillars of Great Web Design
+Four Pillars of Great Web Design
 
 - **Color Theory**
 - **Typography**
 - **User Interface Design**
 - **User Experience Design**
 
+<br>
 
-### Color Theory
+## Color Theory
 
 - Color shows what's your target audience and what messages you are trying to convey
 
@@ -29,6 +30,7 @@
 Taking colors that are adjenct to each other on color wheel.
 
 > Pro: Good for navigation bar, or body, or logo to create a harmoney
+> 
 > Con: will not standing out
 
 
@@ -41,6 +43,7 @@ Taking colors from opposite ends of the color wheel.
 ![Complementary-Colors](http://1.bp.blogspot.com/-gbDLmkZqq6c/VnQ6wF8L4TI/AAAAAAAAEDo/FHR_d4IXQZQ/s1600/Complementary-wheel-for-blog.jpg)
 
 > Pro: create the pop and attention grabing
+> 
 > Con:  DO NOT use it with text and text background, it can be very jarring
 
 - Other ways to combine colors
@@ -48,10 +51,13 @@ Taking colors from opposite ends of the color wheel.
 ![color-schemes](https://thumbs.dreamstime.com/z/color-wheel-schemes-types-complementary-worksheet-education-217672525.jpg)
 
 > [Adobe Color: create color palletes](https://color.adobe.com/create/color-wheel)
+> 
 > [colorhunt](https://colorhunt.co/)
 
 
-### Typography - Fonts Matters
+<br>
+
+## Typography - Fonts Matters
 
 #### Serif Family
 
@@ -100,8 +106,9 @@ Don’t combine a Serif with a Serif and a Sans-Serif with a Sans-Serif because 
   - Things that you should contrast: Serif-ness (for instance, one font should be Serif and the other Sans-Serif) and Weights.
   -  Weight means how heavy or bold your text is. Most design software have a whole range of weights. For example, light, medium, bold, extra bold, and so on. Play around with different weights contrasting them to create interesting designs.
 
+<br>
 
-### User Interface Design (UI Design)
+## User Interface Design (UI Design)
 
 #### 1. Create Hierarchy
 
@@ -136,9 +143,9 @@ Reduce the number of alignments.
 
 ![Audience](https://user-images.githubusercontent.com/103771536/169721011-b2a8804c-6a34-4a83-bd82-aa400052615f.jpg)
 
+<br>
 
-
-### User Experience Design (UX Design)
+## User Experience Design (UX Design)
 
 #### 1. Simplicity
 
@@ -158,6 +165,13 @@ F-Pattern & Z-Pattern
 #### 4. All platform design - Responsiveness (Mobile, laptop...)
 
 
+<br>
+
+<br>
+
+<br>
+
+<br>
 
 
 
@@ -166,10 +180,7 @@ F-Pattern & Z-Pattern
 
 
 
-
-
-
-### Practice: Use Canva to Create UI Design
+## Practice: Use Canva to Create UI Design
 
 > [Design for hotel](https://www.canva.com/design/DAFA9-omLkw/t8VQ4AuBmKOtCO5fnvC1Mw/view?website#2:a-hotel)
 
