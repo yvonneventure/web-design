@@ -47,6 +47,8 @@ Taking colors from opposite ends of the color wheel.
 
 ![color-schemes](https://thumbs.dreamstime.com/z/color-wheel-schemes-types-complementary-worksheet-education-217672525.jpg)
 
+> [Adobe Color: create color palletes](https://color.adobe.com/create/color-wheel)
+> [colorhunt](https://colorhunt.co/)
 
 ### Practice: Use Canva to Create UI Design
 
