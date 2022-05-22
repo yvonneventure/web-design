@@ -57,7 +57,8 @@ Taking colors from opposite ends of the color wheel.
 
 <br>
 
-## Typography - Fonts Matters
+## [Typography - Fonts Matters](https://www.freecodecamp.org/news/how-typography-determines-readability-serif-vs-sans-serif-and-how-to-combine-fonts-629a51ad8cce/)
+
 
 #### Serif Family
 
