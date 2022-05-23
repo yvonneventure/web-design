@@ -41,7 +41,7 @@
 
 ## Bootstrap elements
 
-- Butoons
+- Buttons
 - Nav Bar
 - Carasoul
 - Grid
