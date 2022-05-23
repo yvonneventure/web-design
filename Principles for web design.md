@@ -181,7 +181,7 @@ F-Pattern & Z-Pattern
 
 
 
-## Practice: Use Canva to Create UI Design
+## Project: Use Canva to Create UI Design
 
 > [Design for hotel](https://www.canva.com/design/DAFA9-omLkw/t8VQ4AuBmKOtCO5fnvC1Mw/view?website#2:a-hotel)
 
