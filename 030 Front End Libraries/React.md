@@ -50,6 +50,7 @@ JSX is a convenient tool to write readable HTML within JavaScript. With React, w
 ReactDOM offers a simple method to render React elements to the DOM which looks like this: `ReactDOM.render(componentToRender, targetNode)`, where the first argument is the React element or component that you want to render, and the second argument is the DOM node that you want to render the component to. For example, 
 
 ```js
+// render JSX element
 const JSX = (
   <div id='challenge-node' >
     <h1>Hello World</h1>
@@ -144,6 +145,264 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+### Create a Component with Composition
+
+How we can compose multiple React components together.
+
+To compose these components together, you could create an **parent component** which renders each of these three components as children. To render a component as a child in a React component, you include the component name written as a custom HTML tag in the JSX. 
+
+When React encounters a custom HTML tag that references another component it should be wrapped in `< />`.
+
+```js
+const ChildComponent = () => {
+  return (
+    <div>
+      <p>I am the child</p>
+    </div>
+  );
+};
+
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>I am the parent</h1>
+        <ChildComponent />
+      </div>
+    );
+  }
+}
+```
+
+### Use React to Render Nested Components
+
+Component composition is one of React's powerful features. When you work with React, it is important to start thinking about your user interface. 
+
+You break down your UI into its basic building blocks, and those pieces become the components. This helps to separate the code responsible for the UI from the code responsible for handling your application logic. It can greatly simplify the development and maintenance of complex projects.
+
+
+```js
+const TypesOfFruit = () => {
+  return (
+    <div>
+      <h2>Fruits:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+const Fruits = () => {
+  return (
+    <div>
+      { /* TypesOfFruit is nested within Fruits */ }
+      <TypesOfFruit/>
+      
+    </div>
+  );
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* Fruites is nested within TypesOfFood*/ }
+          <Fruits/>
+        
+      </div>
+    );
+  }
+};
+```
+
+### Render React Component to the DOM
+
+React components are passed into `ReactDOM.render()` a little differently than JSX elements. 
+
+For JSX elements, you pass in the name of the element that you want to render. 
+
+For React components, you need to use the same syntax as if you were rendering a nested component, for example `ReactDOM.render(<ComponentToRender />, targetNode)`. 
+
+❗️You use this syntax for both ES6 class components and functional components.
+
+```js
+
+class MyComponent extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return(
+          <div id="challenge-node">
+                 <h1>My First React Component!</h1>
+          </div>
+    );
+  }
+};
+ReactDOM.render(<MyComponent/>, document.getElementById("challenge-node"));
+```
+
+### Pass Props to a Stateless Functional Component
+
+In React, you can pass `props`, or properties, to child components. 
+ 
+It is standard to call this value props and when dealing with stateless functional components, you basically consider it as an argument to a function which returns JSX. 
+
+Say you have an `div` component which renders a child component called `CurrentDate` which is a stateless functional component. You can pass `CurrentDate` a `date` property  like in the second half of below codes.
+
+You use **custom HTML attributes** created by you and supported by React to be passed to the component. In this case, the created property `date` is passed to the component `CurrentDate`. Since `CurrentDate` is a stateless functional component, it has access to this value like ` {props.date}`:
+
+```js
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date}</p>
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        <CurrentDate date={Date()} />
+      </div>
+    );
+  }
+};
+```
+
+### Pass an Array as Props
+
+```js
+// for display, use comma to seperate items in list
+const List = props => {
+  return <p>{props.tasks.join(", ")}</p>;
+};
+
+
+class ToDo extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    {/* Basic structure of UI*/}
+      <div>
+        <h1>To Do Lists</h1>
+        <h2>Today</h2>
+        {/* Passing in items of the list with tasks property*/}
+        <List tasks={["Walk", "Cook", "Bake"]} />
+        <h2>Tomorrow</h2>
+        <List tasks={["Study", "Code", "Eat"]} />
+      </div>
+    );
+  }
+}
+```
+
+### Use Default Props
+
+This allows you to specify what a prop value should be if no value is explicitly provided.
+
+MyComponent.defaultProps = { prop1: 'value' }
+
+```js
+const ShoppingCart = props => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  );
+};
+
+ShoppingCart.defaultProps = {
+  items: 0,
+  names: 'cart'
+};
+```
+
+### Override Default Props
+
+Use `<Component propsName={Value}/>` to override default props value.
+
+```js
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    { /* override default quantity of 0 to 10*/ }
+    return <Items quantity={10}/>
+   
+  }
+};
+```
+
+### Use PropTypes to Define the Props You Expect
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
