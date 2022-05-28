@@ -481,16 +481,143 @@ Camper.propTypes = {
 
 ### Create a Stateful Component
 
+One of the most important topics in React is `state`. 
 
+**State** consists of any data your application needs to know about, that can change over time. You want your apps to respond to state changes and present an updated UI when necessary. 
 
+React offers a nice solution for the state management of modern web applications.
 
+You create state in a React component by declaring a `state` property on the component class in its `constructor`. This initializes the component with `state` when it is created. The `state` property must be set to a JavaScript `object`. 
 
+```js
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialize state here
+   
+    this.state = {
+      name : "Name"
+    }
 
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+```
 
+### Render State in the User Interface
 
+Once you define a component's initial state, you can display any part of it in the UI that is rendered. If a component is stateful, it will always have access to the data in `state` in its `render()` method. You can access the data with `this.state`.
 
+If you want to access a state value within the `return` of the render method, you have to enclose the value in curly braces `{}`. ( In JSX, any code you write with curly braces { } will be treated as JavaScript. )
 
+`state `is one of the most powerful features of components in React. It allows you to track important data in your app and render a UI in response to changes in this data. If your data changes, your UI will change. 
 
+React uses what is called a virtual DOM, to keep track of changes behind the scenes. When state data updates, it triggers a re-render of the components using that data - including child components that received the data as a prop. React updates the actual DOM, but only where necessary. This means you don't have to worry about changing the DOM. You simply declare what the UI should look like.
+
+Note that if you make a component stateful, no other components are aware of its `state`. Its `state` is completely encapsulated, or local to that component, unless you pass state data to a child component as `props`. This notion of encapsulated `state` is very important because it allows you to write certain logic, then have that logic contained and isolated in one place in your code
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'initialState'
+    }
+  }
+  render() {
+    return (
+      <div>
+        { /* get state value in child use {}*/ }
+        <h1>{this.state.name}</h1>
+       
+      </div>
+    );
+  }
+};
+```
+
+There is another way to access `state` in a component. In the `render()` method, before the `return` statement, you can write JavaScript directly. For example, you could declare functions, access data from `state` or `props`, perform computations on this data, and so on. Then, you can assign any data to variables, which you have access to in the `return` statement.
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'initialState'
+    }
+  }
+  render() {
+    // use js directly to get the state and assign to a var called "name"
+    const name = this.state.name;
+    // change code above this line
+    return (
+      <div>
+        { /* Use var name directly here*/ }
+          <h1>{name}</h1>
+       
+      </div>
+    );
+  }
+};
+```
+
+### Set State with `this.setState`
+
+You call the setState method within your component class on your props like so: `this.setState()`, passing in an object with key-value pairs. 
+
+Use `bind(this)` when you call a function like `this.setState()` within your class method, this refers to the class and will not be undefined, as this can also refer to the class.
+
+Syntax like this :
+```js
+class MyClass {
+  constructor() {
+    this.myMethod = this.myMethod.bind(this);
+  }
+
+  myMethod() {
+    // whatever myMethod does
+  }
+}
+```
+
+For example:
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Initial State'
+    };
+    /* bind*/
+    this.handleClick = this.handleClick.bind(this);
+  }
+  
+  handleClick() {
+    // set state here
+    this.setState({
+      name: 'React Rocks!'
+    });
+    
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Click Me</button>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+```
+
+### Use State to Toggle an Element
 
 
 
