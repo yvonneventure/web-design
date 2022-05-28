@@ -1,6 +1,6 @@
-# React
+# React 
 
-React is a popular JavaScript library for building reusable, component-driven user interfaces for web pages or applications. React is an Open Source view library created and maintained by Facebook. It's a great tool to render the User Interface (UI) of modern web applications.
+[React](https://reactjs.org/docs/getting-started.html) is a popular JavaScript library for building reusable, component-driven user interfaces for web pages or applications. React is an Open Source view library created and maintained by Facebook. It's a great tool to render the User Interface (UI) of modern web applications.
 
 React combines HTML with JavaScript functionality into its own markup language called **JSX**, that allows you to **write HTML directly within JavaScript**. It lets you use the full programmatic power of JavaScript within HTML, and helps to keep your code readable. React also makes it easy to manage the flow of data throughout the application.
 
@@ -366,29 +366,120 @@ class ShoppingCart extends React.Component {
 
 ### Use PropTypes to Define the Props You Expect
 
+React provides useful type-checking features to verify that components receive props of the correct type. For example, your application makes an API call to retrieve data that you expect to be in an `array`, which is then passed to a component as a prop. You can set `propTypes` on your component to require the data to be of type array. This will throw a useful warning when the data is of any other type.
+
+It's considered a best practice to set `propTypes` when you know the type of a prop ahead of time. Doing this will check that props of a given key are present with a given type. 
+
+```js
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+//require quantity as a prop and verify that it is of type number.
+Items.propTypes = {
+  quantity: PropTypes.number.isRequired
+};
+
+Items.defaultProps = {
+  quantity: 0
+};
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items />
+  }
+};
+```
+
+> Note: As of React v15.5.0, `PropTypes` is imported independently from React, like this: `import PropTypes from 'prop-types'`;
+
+Other types at [here](https://reactjs.org/docs/typechecking-with-proptypes.html#proptypes)
+
+### Access Props Using `this.props` for class component
+
+If the child component that you're passing a prop to is an ES6 class component, rather than a stateless functional component? The ES6 class component uses a slightly different convention to access props.
+
+Anytime you refer to a class component within itself, you use the `this` keyword. To access props within a class component, you preface the code that you use to access it with `this`. For example, if an ES6 class component has a prop called `data`, you write `{this.props.data}` in JSX.
+
+```js
+/*Render an instance of the Welcome component in the parent component App. Here, give Welcome a prop of name and assign it a value of a string. Within the child, Welcome, access the name prop within the strong tags.*/
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            { /* child component welcome is rendered with prop value passed to welcome*/ }
+            <Welcome name="Jessica"/>
+            
+        </div>
+    );
+  }
+};
+
+class Welcome extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          { /* Access it's value use this */ }
+          <p>Hello, <strong>{this.props.name}</strong>!</p>
+         
+        </div>
+    );
+  }
+};
+```
+
+### Stateless vs. Stateful | Functional Component vs. Compenent
+
+Passing props to **stateless functional components** are like pure functions. They accept props as input and return the same view every time they are passed the same props. 
+
+A **stateless functional component** is any function you write which accepts props and returns JSX. 
+
+A **stateless component** is a class that extends React.Component, but does not use internal state. 
+
+A **stateful component** is a class component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
+
+> A common pattern is to try to minimize statefulness and to create **stateless functional components** wherever possible. This helps contain your state management to a specific area of your application. In turn, this improves development and maintenance of your app by making it easier to follow how changes to state affect its behavior.
 
 
+```js
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper/>
+      </div>
+    );
+  }
+};
 
+// stateless funtional component
+const Camper = props => <p>{props.name}</p>;
 
+Camper.defaultProps = {
+  name: "CamperBot"
+};
 
+Camper.propTypes = {
+  name: PropTypes.string.isRequired
+};
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### Create a Stateful Component
 
 
 
