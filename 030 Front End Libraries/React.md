@@ -1181,7 +1181,7 @@ return(
 </p>);}
 ```
 
-#### if/else statement in render ()
+#### - if/else statement in render ()
 
 ```js
 class MyComponent extends React.Component {
@@ -1219,6 +1219,364 @@ class MyComponent extends React.Component {
 
 ### Use && for a More Concise Conditional
 
+Use the `&&` logical operator to perform conditional logic in a more concise way. This is possible because you want to check if a condition is `true`, and if it is, return some markup. Like this: `{condition && <p>markup</p>}`
+
+If the `condition` is `true`, the `markup` will be returned. If the condition is `false`, the operation will immediately return false after evaluating the condition and return nothing. You can include these statements directly in your JSX and string multiple conditions together by writing `&&` after each one. 
+
+
+```js
+constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+ this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState(state => ({
+      display: !state.display
+    }));
+  }
+  render() {
+    // change code below this line
+    return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>
+         {this.state.display && <h1>Displayed!</h1>}
+       </div>
+    );
+  }
+};
+```
+
+### Use a Ternary Expression for Conditional Rendering
+
+`if/else` statements can't be inserted directly into JSX code. You might have noticed this  — when an if/else statement was required, it was always outside the `return` statement. 
+
+Ternary expressions can be an excellent alternative if you want to implement conditional logic within your JSX.  Here's the basic syntax: 
+
+```
+condition ? expressionIfTrue : expressionIfFalse;
+```
+
+For example:
+
+```js
+const inputStyle = {
+  width: 235,
+  margin: 5
+}
+
+class CheckUserAge extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userAge: '',
+      input: ''
+    }
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    this.setState({
+      input: e.target.value,
+      userAge: ''
+    });
+  }
+  submit() {
+    this.setState(state => ({
+      userAge: state.input
+    }));
+  }
+  render() {
+    const buttonOne = <button onClick={this.submit}>Submit</button>;
+    const buttonTwo = <button>You May Enter</button>;
+    const buttonThree = <button>You Shall Not Pass</button>;
+    return (
+      <div>
+        <h3>Enter Your Age to Continue</h3>
+        <input
+          style={inputStyle}
+          type="number"
+          value={this.state.input}
+          onChange={this.handleChange} /><br />
+          {
+          this.state.userAge === ''
+            ? buttonOne
+            : this.state.userAge >= 18
+              ? buttonTwo
+              : buttonThree
+          }
+      </div>
+    );
+  }
+};
+```
+
+### Render Conditionally from Props 
+
+Using props to conditionally render code is very common with React developers — that is, they use the value of a given prop to automatically make decisions about what to render.
+
+```js
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <h1>
+      {this.props.fiftyFifty ? "You Win!" : "You Lose!"}
+      </h1>
+    )
+  };
+};
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+    this.setState({
+      counter: this.state.counter + 1 
+    });
+  }
+  render() {
+    const expression = Math.random() >= 0.5 ? true : false
+    
+    return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        
+        <Results fiftyFifty={expression} />
+        
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+};
+```
+
+### Change Inline CSS Conditionally Based on Component State
+
+You can also render CSS conditionally based on the state of a React component. To do this, you check for a condition, and if that condition is met, you modify the styles object that's assigned to the JSX elements in the render method.
+
+This paradigm is important to understand because it is a dramatic shift from the more traditional approach of applying styles by modifying DOM elements directly (which is very common with jQuery, for example). 
+
+In that approach, you must keep track of when elements change and also handle the actual manipulation directly. It can become difficult to keep track of changes, potentially making your UI unpredictable. 
+
+Whereas here, when you set a style object based on a condition, you describe how the UI should look as a function of the application's state. There is a clear flow of information that only moves in one direction. This is the preferred method when writing applications with React.
+
+```js
+class GateKeeper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ input: event.target.value })
+  }
+  render() {
+    let inputStyle = {
+      border: '1px solid black'
+    };
+    
+    if (this.state.input.length > 15) {
+      inputStyle = {
+        border: '3px solid red'
+      };
+    }
+    
+    return (
+      <div>
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+      </div>
+    );
+  }
+};
+```
+
+### Use `Array.map()` to Dynamically Render Elements
+
+Conditional rendering is useful, but you may need your components to render an unknown number of elements. Often in reactive programming, a programmer has no way to know what the state of an application is until runtime, because so much depends on a user's interaction with that program. Programmers need to write their code to correctly handle that unknown state ahead of time. Using `Array.map()` in React illustrates this concept.
+
+For example, you create a simple "To Do List" app. As the programmer, you have no way of knowing how many items a user might have on their list. You need to set up your component to dynamically render the correct number of list elements long before someone using the program decides that today is laundry day.
+
+```jx
+const textAreaStyles = {
+  width: 235,
+  margin: 5
+};
+
+class MyToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialize
+    this.state = {
+      userInput: '',
+      toDoList: []
+    }
+    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleSubmit() {
+    const itemsArray = this.state.userInput.split(',');
+    this.setState({
+      toDoList: itemsArray
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      userInput: e.target.value
+    });
+  }
+  render() {
+  // array.map here
+    const items = this.state.toDoList.map(i => <li>{i}</li>); 
+    return (
+      <div>
+        <textarea
+          onChange={this.handleChange}
+          value={this.state.userInput}
+          style={textAreaStyles}
+          placeholder="Separate Items With Commas" /><br />
+        <button onClick={this.handleSubmit}>Create List</button>
+        <h1>My "To Do" List:</h1>
+        <ul>
+          {items}
+        </ul>
+      </div>
+    );
+  }
+};
+```
+
+### Give Sibling Elements a Unique Key Attribute
+
+When you create an array of elements, each one needs a `key` attribute set to a unique value. React uses these keys to keep track of which items are added, changed, or removed. This helps make the re-rendering process more efficient when the list is modified in any way.
+
+> ❗️ Note: Keys only need to be unique between sibling elements, they don't need to be globally unique in your application.
+
+```js
+const frontEndFrameworks = [
+  'React',
+  'Angular',
+  'Ember',
+  'Knockout',
+  'Backbone',
+  'Vue'
+];
+
+function Frameworks() {
+  const renderFrameworks = frontEndFrameworks.map((item) =>
+  <li key={item}>{item}</li>
+);
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>
+        {renderFrameworks}
+      </ul>
+    </div>
+  );
+};
+```
+
+> ❗️ Using the array index as the key should be avoided.
+
+
+### Use Array.filter() to Dynamically Filter an Array
+
+
+`Array.filter()`  filters the contents of an array based on a condition, then returns a new array. 
+
+For example, if you have an array of users that all have a property online which can be set to `true` or `false`, you can filter only those users that are online: `let onlineUsers = users.filter(user => user.online);`
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    }
+  }
+  render() {
+    const usersOnline = this.state.users.filter(user => user.online === true); 
+    const renderOnline = usersOnline.map(user => <li key={user.username}>{user.username}</li>); 
+    return (
+       <div>
+         <h1>Current Online Users:</h1>
+         <ul>
+           {renderOnline}
+         </ul>
+       </div>
+    );
+  }
+};
+```
+
+### Render React on the Server with renderToString
+
+So far, you have been rendering React components on the client. Normally, this is what you will always do. However, there are some use cases where it makes sense to render a React component on the server. 
+
+Since React is a JavaScript view library and you can run JavaScript on the server with Node, this is possible. In fact, React provides a `renderToString()` method you can use for this purpose.
+
+There are two key reasons why rendering on the server may be used in a real world app. 
+
+First, without doing this, your React apps would consist of a relatively empty HTML file and a large bundle of JavaScript when it's initially loaded to the browser. This may not be ideal for search engines that are trying to index the content of your pages so people can find you. If you render the initial HTML markup on the server and send this to the client, the initial page load contains all of the page's markup which can be crawled by search engines. 
+
+Second, this creates a faster initial page load experience because the rendered HTML is smaller than the JavaScript code of the entire app. React will still be able to recognize your app and manage it after the initial load.
+
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <div/>
+  }
+};
+
+// render to server
+ReactDOMServer.renderToString(<App />);
+```
 
 
 
@@ -1236,6 +1594,23 @@ class MyComponent extends React.Component {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+
+<br>
 
 
 ## References
