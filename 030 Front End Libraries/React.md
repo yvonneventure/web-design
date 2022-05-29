@@ -837,6 +837,387 @@ class MyForm extends React.Component {
 
 ### Pass State as Props to Child Components
 
+You saw a lot of examples that passed props to child JSX elements and child React components. You may be wondering where those props come from. 
+
+A common pattern is to have a stateful component containing the `state` important to your app, that then renders child components. You want these components to have access to some pieces of that `state`, which are passed in as props.
+
+For example, maybe you have an `App` component that renders a `Navbar`, among other components. In your App, you have `state` that contains a lot of user information, but the `Navbar` only needs access to the user's username so it can display it. You pass that piece of `state` to the `Navbar` component as a prop.
+
+This pattern illustrates some important paradigms in React. The first is ***unidirectional data flow***. State flows in one direction down the tree of your application's components, from the stateful parent component to child components. The child components only receive the state data they need. The second is that complex stateful apps can be **broken down** into just a few, or maybe a single, stateful component. The rest of your components simply receive state from the parent as props, and render a UI from that state. It begins to create a separation where **state management** is handled in one part of code and UI rendering in another. This principle of separating state logic from UI logic is one of React's key principles. When it's used correctly, it makes the design of complex, stateful applications much easier to manage.
+
+```js
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "Yvonne"
+    };
+  }
+  render() {
+    return (
+      <div>
+        // Here we will call this.state.name in order to pass the value of Yvonne to the NavBar component
+        <Navbar name={this.state.name} />
+      </div>
+    );
+  }
+}
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        /* Since we passed in the Yvonne state value into the the NavBar component above the h1 element below will render the value passed from state */
+        <h1>Hello, my name is: {this.props.name}</h1>
+      </div>
+    );
+  }
+}
+```
+
+### Pass a Callback as Props
+
+ou can pass `state` as props to child components, but you're not limited to passing data. You can also pass handler functions or any method that's defined on a React component to a child component. This is how you allow child components to interact with their parent components.
+
+You pass methods to a child just like a regular prop. It's assigned a name and you have access to that method name under `this.props` in the child component.
+
+```js
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+  this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+         <GetInput
+           input={this.state.inputValue}
+           handleChange={this.handleChange}/>
+         <RenderInput
+           input={this.state.inputValue}/>
+       </div>
+    );
+  }
+};
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
+      </div>
+    );
+  }
+};
+```
+
+### Use the Lifecycle Method
+
+React components have several special methods that provide opportunities to perform actions at specific points in the lifecycle of a component. These are called lifecycle methods, or lifecycle hooks, and allow you to catch components at certain points in time. This can be before they are rendered, before they update, before they receive props, before they unmount, and so on.
+
+#### - `componentWillMount()` (removed in Reactv17)
+
+The `componentWillMount()` method is called before the `render()` method when a component is being mounted to the DOM.
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+   
+    console.log('Component being mounted');
+    
+  }
+  render() {
+    return <div />
+  }
+};
+```
+
+#### - `componentDidMount()` 
+
+Most web developers, at some point, need to call an API endpoint to retrieve data. If you're working with React, it's important to know where to perform this action.
+
+The best practice with React is to place API calls or any calls to your server in the lifecycle method `componentDidMount()`. This method is called after a component is mounted to the DOM. Any calls to `setState()` here will trigger a re-rendering of your component. 
+
+When you call an API in this method, and set your state with the data that the API returns, it will automatically trigger an update once you receive the data.
+
+This is used to set state after a giventime period.
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  // set activeUsers to 1273 after 2500 milliseconds (25 seconds)
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Active Users: { this.state.activeUsers }</h1>
+      </div>
+    );
+  }
+}
+
+```
+
+#### - Add Event Listeners
+
+The `componentDidMount()` method is also the best place to attach any event listeners you need to add for specific functionality. 
+
+React provides a synthetic event system which wraps the native event system present in browsers. 
+
+This means that the synthetic event system behaves exactly the same regardless of the user's browser - even if the native events may behave differently between different browsers.
+
+You've already been using some of these synthetic event handlers such as `onClick()`. 
+
+React's synthetic event system is great to use for most interactions you'll manage on DOM elements. However, if you want to attach an event handler to the document or window objects, you have to do this directly.
+
+It's good practice to use this lifecycle method to do any clean up on React components before they are unmounted and destroyed. Removing event listeners is an example of one such clean up action.
+
+```js
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ""
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  // add or set up keydown listener
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress);
+  }
+  // remove or clear up keydown listener
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress);
+  }
+  // handleEnter method
+  handleEnter() {
+    this.setState({
+      message: this.state.message + "You pressed the enter key! "
+    });
+  }
+  // handle event if enter is pressed
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+}
+```
+
+#### - Optimize Re-Renders with `shouldComponentUpdate()`
+
+So far, if any component receives new `state` or new `props`, it re-renders itself and all its children. This is usually okay. But React provides a lifecycle method you can call when child components receive new `state` or `props`, and declare specifically if the components should update or not. The method is `shouldComponentUpdate()`, and it takes `nextProps` and `nextState` as parameters.
+
+This method is a useful way to optimize performance. For example, the default behavior is that your component re-renders when it receives new `props`, even if the `props` haven't changed. You can use `shouldComponentUpdate()` to prevent this by comparing the props. The method must return a `boolean` value that tells React whether or not to update the component. You can compare the current props (`this.props`) to the next props (`nextProps`) to determine if you need to update or not, and return `true` or `false` accordingly.
+
+```js
+class OnlyEvens extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  // then check and update when nextProps are even numbers
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Should I update?');
+     
+      if (nextProps.value % 2 == 0) {
+        return true;
+      }
+      return false;
+     
+  }
+  // always receiving the new props first
+  componentWillReceiveProps(nextProps) {
+    console.log('Receiving new props...');
+  }
+  // once should update is true, run this
+  componentDidUpdate() {
+    console.log('Component re-rendered.');
+  }
+  render() {
+    return <h1>{this.props.value}</h1>
+  }
+};
+
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    };
+    this.addValue = this.addValue.bind(this);
+  }
+  addValue() {
+    this.setState({
+      value: this.state.value + 1
+    });
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.addValue}>Add</button>
+        <OnlyEvens value={this.state.value}/>
+      </div>
+    );
+  }
+};
+```
+
+### Add styles to JSX elements created in React
+
+If you import styles from a stylesheet, it isn't much different at all. You apply a class to your JSX element using the className attribute, and apply styles to the class in your stylesheet.
+
+Another option is to apply inline styles, similar to how you do it in HTML, but with a few JSX differences. Here's an example of an inline style in HTML:
+
+```hmtl
+<div style="color: yellow; font-size: 16px">Mellow Yellow</div>
+```
+
+In JSX:
+
+```js
+<div style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
+```
+
+> ❗️ Notice how we camelCase the fontSize property? This is because React will not accept kebab-case keys in the style object. React will apply the correct property name for us in the HTML.
+
+❗️All property value length units (like `height`, `width`, and `fontSize`) are assumed to be in `px` unless otherwise specified. If you want to use `em`, for example, you wrap the value and the units in quotes, like `{fontSize: "4em"}`. Other than the length values that default to `px`, all other property values should be wrapped in **quotes("")**.
+
+```js
+const styles = {
+  color: 'purple',
+  fontSize: 40,
+  border: "2px solid purple",
+};
+
+class Colorful extends React.Component {
+  render() {
+   
+    return (
+      <div style={styles}>Style Me!</div>
+    );
+
+  }
+};
+```
+
+### Use JS directly in `render(){}` method
+
+You can also write JavaScript directly in your `render` methods, before the `return` statement, **without** inserting it inside of **curly braces**. This is because it is not yet within the JSX code. When you want to use a variable later in the JSX code inside the `return` statement, you place the variable name inside curly braces.
+
+```js
+class MagicEightBall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ask = this.ask.bind(this);
+    ask() {
+    if (this.state.userInput) {
+      this.setState({
+        randomIndex: Math.floor(Math.random() * 20),
+        userInput: ''
+      });
+    }
+  }
+render(){
+// here use js directly
+const answer = possibleAnswers[this.state.randomIndex];
+}
+return(
+<p>
+  {answer}          
+</p>);}
+```
+
+#### if/else statement in render ()
+
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+ this.toggleDisplay = this.toggleDisplay.bind(this);
+ }
+  toggleDisplay() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+  render() {
+    
+    if (this.state.display) {
+      return (
+         <div>
+           <button onClick={this.toggleDisplay}>Toggle Display</button>
+           <h1>Displayed!</h1>
+         </div>
+      );
+    } else {
+      return (
+        <div>
+           <button onClick={this.toggleDisplay}>Toggle Display</button>
+         </div>
+      );
+    }
+  }
+};
+```
+
+### Use && for a More Concise Conditional
 
 
 
@@ -845,6 +1226,23 @@ class MyForm extends React.Component {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+## References
+
+> - [React Documentation](https://reactjs.org/docs/getting-started.html)
+> 
+> - [What's DOM?](https://www.freecodecamp.org/news/what-is-the-dom-document-object-model-meaning-in-javascript/)
 
 
 
